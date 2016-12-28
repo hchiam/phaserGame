@@ -1,5 +1,6 @@
 // http://www.lessmilk.com/tutorial/flappy-bird-phaser-1
 // http://www.lessmilk.com/tutorial/flappy-bird-phaser-2
+// http://www.lessmilk.com/tutorial/flappy-bird-phaser-3
 
 // Create our 'main' state that will contain the game
 var mainState = {
@@ -30,6 +31,25 @@ var mainState = {
      * Here we set up the game, display sprites, etc.
      */
     create: function() {
+        // If this is not a desktop (so it's a mobile device)
+        if (game.device.desktop == false) {
+            // Set the scaling mode to SHOW_ALL to show all the game
+            game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            
+            // Set a minimum and maximum size for the game
+            // Here the minimum is half the game size
+            // And the maximum is the original game size
+            game.scale.setMinMax(game.width/2, game.height/2, game.width, game.height);
+            
+            // Center the game horizontally and vertically
+            game.scale.pageAlignHorizontally = true;
+            game.scale.pageAlignVertically = true;
+        }
+        
+        // Center the game horizontally and vertically for desktop too
+        game.scale.pageAlignHorizontally = true;
+        game.scale.pageAlignVertically = true;
+        
         // Change the background color of the game to blue
         game.stage.backgroundColor = '#71c5cf';
         
@@ -49,6 +69,9 @@ var mainState = {
         // Call the 'jump' function when the spacekey is hit
         var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jump, this);
+        
+        // Call the 'jump' function when we tap/click on the screen
+        game.input.onDown.add(this.jump, this);
         
         // Create an empty group, to which pipes will be added with our custom function addOnePipe or addRowOfPipes
         this.pipes = game.add.group();
