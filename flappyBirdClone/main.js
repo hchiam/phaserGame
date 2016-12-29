@@ -32,7 +32,7 @@ var mainState = {
      */
     create: function() {
         // If this is not a desktop (so it's a mobile device)
-        if (game.device.desktop == false) {
+        if (game.device.desktop === false) {
             // Set the scaling mode to SHOW_ALL to show all the game
             game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             
@@ -120,7 +120,7 @@ var mainState = {
      */
     jump: function() {
         // We don't want to be able to make the bird jump when it's dead
-        if (this.bird.alive == false) {
+        if (this.bird.alive === false) {
             return;
         }
         
@@ -192,7 +192,7 @@ var mainState = {
     hitPipe: function() {
         // If the bird has already hit a pipe, do nothing
         // It means the bird is already falling off the screen
-        if (this.bird.alive == false) {
+        if (this.bird.alive === false) {
             return;
         }
         
