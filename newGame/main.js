@@ -103,7 +103,13 @@ function create() {
     invisibles.setAll('tint', colorInvisible);
     
     cursors = game.input.keyboard.createCursorKeys();
+    
+    // Call the 'jump' function when the spacekey is hit
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    
+    // Call the 'jump' function when we tap/click on the screen
+    pointer1 = game.input.addPointer(); // TODO: check that this works
+    game.input.onTap.add(jump, this);
     
     text = game.add.text(0, 0, message);
     
@@ -124,6 +130,7 @@ function update () {
     
     game.physics.arcade.collide(immobiles, immobiles);
     game.physics.arcade.collide(invisibles, invisibles);
+    game.physics.arcade.collide(invisibles, immobiles);
     game.physics.arcade.collide(boxes, boxes);
     game.physics.arcade.collide(boxes, immobiles);
     game.physics.arcade.collide(boxes, invisibles);
@@ -138,11 +145,9 @@ function update () {
             player.body.velocity.x = 250;
         }
         
-        // jumping off of floor + wall and ceiling "stickiness"
-        if (jumpButton.isDown && (player.body.onFloor() || player.body.touching.down || player.body.touching.left || player.body.touching.right || player.body.onWall() )) {
-            player.body.velocity.y = -500;
-        } else if (jumpButton.isDown && (player.body.onCeiling() || player.body.touching.up)) {
-            player.body.velocity.y = -500;
+        if (jumpButton.isDown) {
+            // jumping off of floor and wall/ceiling "stickiness"
+            jump();
         }
     }
     
@@ -154,6 +159,12 @@ function update () {
 
 function render () {
     
+}
+
+function jump() {
+    if (player.body.onFloor() || player.body.touching.down || player.body.touching.left || player.body.touching.right || player.body.onWall() || player.body.onCeiling() || player.body.touching.up) {
+        player.body.velocity.y = -500;
+    }
 }
 
 function goImmobile() {
