@@ -74,7 +74,7 @@ function create() {
     boxes.create(200, 350, 'box');
     limpers.create(300, 425, 'box');
     limpers.create(400, 425, 'box');
-    limpers.create(600, 425, 'box');
+    intangibles.create(600, 425, 'box');
     intangibles.create(700, 500, 'box');
     
     //boxes.setAll('body.immovable', true);
