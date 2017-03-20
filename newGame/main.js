@@ -119,12 +119,14 @@ function create() {
 function update () {
     
     if (intangible === false && invisible === false) {
+        // order matters: make immobiles able to bounce off once they immobilize player:
+        game.physics.arcade.collide(player, immobiles);
+        
         // order matters: special interaction skills apply before regular collisions:
         game.physics.arcade.overlap(immobiles, player, goImmobile, null, this);
         game.physics.arcade.overlap(intangibles, player, goIntangible, null, this);
         game.physics.arcade.overlap(invisibles, player, goInvisible, null, this);
         
-        game.physics.arcade.collide(player, immobiles);
         game.physics.arcade.collide(player, intangibles);
         game.physics.arcade.collide(player, invisibles);
         game.physics.arcade.collide(player, boxes);
