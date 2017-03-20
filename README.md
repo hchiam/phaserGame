@@ -12,3 +12,5 @@ Test games using the Phaser HTML5 game framework.
 ## new game test:
 [https://github.com/hchiam/phaserGame/tree/master/newGame](https://github.com/hchiam/phaserGame/tree/master/newGame)
 ![newGame](https://github.com/hchiam/phaserGame/blob/master/Screenshot_newGame.png "new game test")
+Try the newest version in your browser here:
+[https://codepen.io/hchiam/full/gmvzdo/](https://codepen.io/hchiam/full/gmvzdo/)
