@@ -113,6 +113,8 @@ function create() {
     
     text = game.add.text(0, 0, message);
     
+    instructionText = game.add.text(0, 0, "Left / Right = \u25C0 / \u25B6\nJump = Spacebar / \u261A", {fill:"maroon"});
+    instructionText.x = game.width/2 - instructionText.width/2;
 }
 
 function update () {
