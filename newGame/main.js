@@ -118,6 +118,19 @@ function create() {
 
 function update () {
     
+    if (immobile) {
+        message = "IMMOBILE";
+        player.tint = colorImmobile;
+    } 
+    if (invisible) {
+        message = "INVISIBLE";
+        player.tint = colorInvisible;
+    }
+    if (intangible) {
+        message = "INTANGIBLE";
+        player.tint = colorIntangible;
+    }
+    
     if (intangible === false && invisible === false) {
         // order matters: special interaction skills apply before regular collisions:
         game.physics.arcade.overlap(immobiles, player, goImmobile, null, this);
