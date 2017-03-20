@@ -20,7 +20,7 @@ var invisibles;
 
 var cursors;
 var jumpButton;
-var canMove = true;
+var immobile = false;
 var intangible = false;
 var invisible = false;
 
@@ -119,9 +119,6 @@ function create() {
 function update () {
     
     if (intangible === false && invisible === false) {
-        // order matters: make immobiles able to bounce off once they immobilize player:
-        game.physics.arcade.collide(player, immobiles);
-        
         // order matters: special interaction skills apply before regular collisions:
         game.physics.arcade.overlap(immobiles, player, goImmobile, null, this);
         game.physics.arcade.overlap(intangibles, player, goIntangible, null, this);
@@ -130,6 +127,9 @@ function update () {
         game.physics.arcade.collide(player, intangibles);
         game.physics.arcade.collide(player, invisibles);
         game.physics.arcade.collide(player, boxes);
+        if (immobile === false) {
+            game.physics.arcade.collide(player, immobiles);
+        }
     } else if (intangible) {
         game.physics.arcade.collide(player, intangibles);
     }
@@ -143,7 +143,7 @@ function update () {
     
     player.body.velocity.x = 0;
     
-    if (canMove) {
+    if (immobile === false) {
         // moving left and right
         if (cursors.left.isDown) {
             player.body.velocity.x = -250;
@@ -175,7 +175,7 @@ function jump() {
 
 function goImmobile() {
     player.tint = colorImmobile;
-    canMove = false;
+    immobile = true;
     message = "IMMOBILE";
     game.time.events.add(Phaser.Timer.SECOND * 5, unImmobile, this);
 }
@@ -196,7 +196,7 @@ function goInvisible() {
 function unImmobile() {
     player.tint = colorNormal;
     message = "";
-    canMove = true;
+    immobile = false;
 }
 
 function unIntangible() {
