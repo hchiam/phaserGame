@@ -127,6 +127,8 @@ function update () {
         game.physics.arcade.overlap(immobiles, player, goImmobile, null, this);
         game.physics.arcade.overlap(intangibles, player, goIntangible, null, this);
         game.physics.arcade.overlap(invisibles, player, goInvisible, null, this);
+    } else if (intangible) {
+        game.physics.arcade.collide(player, intangibles);
     }
     
     game.physics.arcade.collide(immobiles, immobiles);
