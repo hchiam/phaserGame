@@ -10,7 +10,6 @@ function preload() {
     
     game.load.image('player', 'assets/square.png');
     game.load.image('box', 'assets/square.png');
-    
 }
 
 var player;
@@ -54,7 +53,7 @@ function create() {
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
     
-    player = game.add.sprite(100, 200, 'player');
+    player = game.add.sprite(100, 100, 'player');
     player.tint = colorNormal;
     
     game.physics.arcade.enable(player);
@@ -68,14 +67,14 @@ function create() {
     intangibles = game.add.physicsGroup();
     invisibles = game.add.physicsGroup();
     
-    invisibles.create(20, 400, 'box');
-    boxes.create(500, 150, 'box');
-    boxes.create(500, 150, 'box');
-    boxes.create(200, 350, 'box');
-    immobiles.create(300, 425, 'box');
-    immobiles.create(400, 425, 'box');
-    intangibles.create(600, 425, 'box');
-    intangibles.create(700, 500, 'box');
+    invisibles.create(20, 300, 'box');
+    boxes.create(500, 50, 'box');
+    boxes.create(500, 45, 'box');
+    boxes.create(200, 250, 'box');
+    immobiles.create(300, 300, 'box');
+    immobiles.create(400, 200, 'box');
+    intangibles.create(600, 325, 'box');
+    intangibles.create(700, 400, 'box');
     
     //boxes.setAll('body.immovable', true);
     boxes.setAll('body.collideWorldBounds', true);
@@ -93,13 +92,13 @@ function create() {
     intangibles.setAll('body.collideWorldBounds', true);
     intangibles.setAll('body.bounce.x', 0.8);
     intangibles.setAll('body.bounce.y', 1);
-    intangibles.setAll('body.gravity.y', 500);
+    intangibles.setAll('body.gravity.y', 200);
     intangibles.setAll('tint', colorIntangible);
     
     invisibles.setAll('body.collideWorldBounds', true);
     invisibles.setAll('body.bounce.x', 0.8);
     invisibles.setAll('body.bounce.y', 1);
-    invisibles.setAll('body.gravity.y', 500);
+    invisibles.setAll('body.gravity.y', 400);
     invisibles.setAll('tint', colorInvisible);
     
     cursors = game.input.keyboard.createCursorKeys();
