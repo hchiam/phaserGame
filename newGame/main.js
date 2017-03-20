@@ -15,7 +15,7 @@ function preload() {
 
 var player;
 var boxes;
-var limpers;
+var immobiles;
 var intangibles;
 var invisibles;
 
@@ -27,7 +27,7 @@ var invisible = false;
 
 var colorNormal = 0xFFFF00;
 var colorBox = 0xFFA500;
-var colorLimp = 0x00FF00;
+var colorImmobile = 0x00FF00;
 var colorIntangible = 0xFFFFFF;
 var colorInvisible = 0x0000FF;
 
@@ -64,7 +64,7 @@ function create() {
     //player.body.bounce.set(0.5);
     
     boxes = game.add.physicsGroup();
-    limpers = game.add.physicsGroup();
+    immobiles = game.add.physicsGroup();
     intangibles = game.add.physicsGroup();
     invisibles = game.add.physicsGroup();
     
@@ -72,8 +72,8 @@ function create() {
     boxes.create(500, 150, 'box');
     boxes.create(500, 150, 'box');
     boxes.create(200, 350, 'box');
-    limpers.create(300, 425, 'box');
-    limpers.create(400, 425, 'box');
+    immobiles.create(300, 425, 'box');
+    immobiles.create(400, 425, 'box');
     intangibles.create(600, 425, 'box');
     intangibles.create(700, 500, 'box');
     
@@ -84,11 +84,11 @@ function create() {
     boxes.setAll('body.gravity.y', 500);
     boxes.setAll('tint', colorBox);
     
-    limpers.setAll('body.collideWorldBounds', true);
-    limpers.setAll('body.bounce.x', 0.8);
-    limpers.setAll('body.bounce.y', 1);
-    limpers.setAll('body.gravity.y', 500);
-    limpers.setAll('tint', colorLimp);
+    immobiles.setAll('body.collideWorldBounds', true);
+    immobiles.setAll('body.bounce.x', 0.8);
+    immobiles.setAll('body.bounce.y', 1);
+    immobiles.setAll('body.gravity.y', 500);
+    immobiles.setAll('tint', colorImmobile);
     
     intangibles.setAll('body.collideWorldBounds', true);
     intangibles.setAll('body.bounce.x', 0.8);
@@ -112,20 +112,20 @@ function create() {
 function update () {
     
     if (intangible === false && invisible === false) {
-        game.physics.arcade.collide(player, limpers);
+        game.physics.arcade.collide(player, immobiles);
         game.physics.arcade.collide(player, intangibles);
         game.physics.arcade.collide(player, invisibles);
         game.physics.arcade.collide(player, boxes);
         
-        game.physics.arcade.overlap(limpers, player, goLimp, null, this);
+        game.physics.arcade.overlap(immobiles, player, goImmobile, null, this);
         game.physics.arcade.overlap(intangibles, player, goIntangible, null, this);
         game.physics.arcade.overlap(invisibles, player, goInvisible, null, this);
     }
     
-    game.physics.arcade.collide(limpers, limpers);
+    game.physics.arcade.collide(immobiles, immobiles);
     game.physics.arcade.collide(invisibles, invisibles);
     game.physics.arcade.collide(boxes, boxes);
-    game.physics.arcade.collide(boxes, limpers);
+    game.physics.arcade.collide(boxes, immobiles);
     game.physics.arcade.collide(boxes, invisibles);
     
     player.body.velocity.x = 0;
@@ -156,11 +156,11 @@ function render () {
     
 }
 
-function goLimp() {
-    player.tint = colorLimp;
+function goImmobile() {
+    player.tint = colorImmobile;
     canMove = false;
     message = "IMMOBILE";
-    game.time.events.add(Phaser.Timer.SECOND * 5, unLimp, this);
+    game.time.events.add(Phaser.Timer.SECOND * 5, unImmobile, this);
 }
 
 function goIntangible() {
@@ -176,7 +176,7 @@ function goInvisible() {
     game.time.events.add(Phaser.Timer.SECOND * 5, unInvisible, this);
 }
 
-function unLimp() {
+function unImmobile() {
     player.tint = colorNormal;
     message = "";
     canMove = true;
