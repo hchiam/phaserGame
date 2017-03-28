@@ -8,8 +8,13 @@ function preload() {
     
     game.stage.backgroundColor = '#85b5e1';
     
-    game.load.image('player', 'assets/square.png');
-    game.load.image('box', 'assets/square.png');
+    //game.load.image('player', 'assets/square.png');
+    //game.load.image('box', 'assets/square.png');
+    
+    game.load.crossOrigin = "Anonymous"; // enables loading from url
+    game.load.image('player', 'https://2.bp.blogspot.com/-hdTvE_5T94s/WNp6fZa2dKI/AAAAAAAADDE/Y4hkeEig0UceMdrrFCjt83LivqlQVzNxwCLcB/s1600/square.png');
+    game.load.image('box', 'https://2.bp.blogspot.com/-hdTvE_5T94s/WNp6fZa2dKI/AAAAAAAADDE/Y4hkeEig0UceMdrrFCjt83LivqlQVzNxwCLcB/s1600/square.png');
+    
 }
 
 var player;
