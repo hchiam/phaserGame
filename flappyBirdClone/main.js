@@ -1,3 +1,4 @@
+// https://github.com/hchiam/phaserGame/tree/master/flappyBirdClone
 // http://www.lessmilk.com/tutorial/flappy-bird-phaser-1
 // http://www.lessmilk.com/tutorial/flappy-bird-phaser-2
 // http://www.lessmilk.com/tutorial/flappy-bird-phaser-3
@@ -16,11 +17,16 @@ var mainState = {
      * That's where we load the images and sounds
      */
     preload: function() {
+        
+        game.load.crossOrigin = "Anonymous"; // enable url load img
+        let bird = 'https://2.bp.blogspot.com/-hdTvE_5T94s/WNp6fZa2dKI/AAAAAAAADDE/Y4hkeEig0UceMdrrFCjt83LivqlQVzNxwCLcB/s1600/square.png';
+        let pipe = bird;
+        
         // Load the bird sprite
-        game.load.image('bird', 'assets/bird.png');
+        game.load.image('bird', bird);
         
         // Load the pipe sprite
-        game.load.image('pipe', 'assets/pipe.png');
+        game.load.image('pipe', pipe);
         
         // Load the jump sound
         game.load.audio('jump', 'assets/jump.wav');
@@ -152,6 +158,7 @@ var mainState = {
     addOnePipe: function(x, y) {
         // Create a pipe at the position x and y
         var pipe = game.add.sprite(x, y, 'pipe');
+        pipe.tint = 0x0000FF;
         
         // Add the pipe to our previously created group
         this.pipes.add(pipe);
