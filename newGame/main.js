@@ -15,6 +15,8 @@ function preload() {
     game.load.image('player', 'https://2.bp.blogspot.com/-hdTvE_5T94s/WNp6fZa2dKI/AAAAAAAADDE/Y4hkeEig0UceMdrrFCjt83LivqlQVzNxwCLcB/s1600/square.png');
     game.load.image('box', 'https://2.bp.blogspot.com/-hdTvE_5T94s/WNp6fZa2dKI/AAAAAAAADDE/Y4hkeEig0UceMdrrFCjt83LivqlQVzNxwCLcB/s1600/square.png');
     
+    // Load the jump sound
+    game.load.audio('jump', 'assets/jump.wav');
 }
 
 var player;
@@ -44,6 +46,8 @@ var colorBox = 0xFFA500;
 var colorImmobile = 0x00FF00;
 var colorIntangible = 0xFFFFFF;
 var colorInvisible = 0x0000FF;
+
+var jumpSound;
 
 var message = "";
 var counter = 5;
@@ -129,6 +133,8 @@ function create() {
     // Enable usb controller gamepad
     game.input.gamepad.start();
     pad1 = game.input.gamepad.pad1;
+    
+    jumpSound = game.add.audio('jump');
     
     text = game.add.text(0, 0, message);
     
@@ -224,6 +230,7 @@ function render () {
 function jump() {
     if (player.body.onFloor() || player.body.touching.down || player.body.touching.left || player.body.touching.right || player.body.onWall() || player.body.onCeiling() || player.body.touching.up) {
         player.body.velocity.y = -500;
+        jumpSound.play();
     }
 }
 
