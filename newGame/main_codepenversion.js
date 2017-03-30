@@ -40,6 +40,15 @@ var invisibles;
 
 var cursors;
 var jumpButton;
+var pad1;
+// gamepad mappings for my retrolink usb controller:
+var btn_a = Phaser.Gamepad.XBOX360_X;
+var btn_b = Phaser.Gamepad.XBOX360_Y;
+var btn_x = Phaser.Gamepad.XBOX360_A;
+var btn_y = Phaser.Gamepad.XBOX360_B;
+var stick_left_x = Phaser.Gamepad.XBOX360_STICK_LEFT_Y;
+var stick_left_y = Phaser.Gamepad.XBOX360_STICK_RIGHT_X;
+
 var immobile = false;
 var intangible = false;
 var invisible = false;
@@ -130,6 +139,10 @@ function create() {
     pointer1 = game.input.addPointer(); // TODO: check that this works
     game.input.onTap.add(jump, this);
     
+    // Enable usb controller gamepad
+    game.input.gamepad.start();
+    pad1 = game.input.gamepad.pad1;
+    
     text = game.add.text(0, 0, message);
     
     instructionText = game.add.text(0, 0, "Left / Right = \u25C0 / \u25B6\nJump = Spacebar / \u261A", {fill:"maroon"});
@@ -187,6 +200,27 @@ function update () {
         if (jumpButton.isDown) {
             // jumping off of floor and wall/ceiling "stickiness"
             jump();
+        }
+        
+        // use gamepad:
+        
+        // gamepad buttons a,b,x,y:
+        if (pad1.isDown(btn_a)) {
+            jump();
+        } else if (pad1.isDown(btn_b)) {
+            jump();
+        } else if (pad1.isDown(btn_x)) {
+            jump();
+        } else if (pad1.isDown(btn_y)) {
+            jump();
+        }
+        // gamepad left stick x and y directions:
+        if (pad1.connected) {
+            var rightStickX = pad1.axis(stick_left_x);
+            //var rightStickY = pad1.axis(stick_left_y);
+            
+            if (rightStickX) player.x += rightStickX * 10;
+            //if (rightStickY) player.y += rightStickY * 10;
         }
     }
     
