@@ -6,10 +6,13 @@ Test games using the Phaser HTML5 game framework.
 
 ## flappy bird clone:
 [https://github.com/hchiam/phaserGame/tree/master/flappyBirdClone](https://github.com/hchiam/phaserGame/tree/master/flappyBirdClone)
-[![flappyBirdClone](https://github.com/hchiam/phaserGame/blob/master/Screenshot_flappyBirdClone.png "flappy bird clone")](https://codepen.io/hchiam/full/oYKxwY)
+
+<a target="_blank" href="https://codepen.io/hchiam/full/oYKxwY"><img src="https://github.com/hchiam/phaserGame/blob/master/Screenshot_flappyBirdClone.png" height="200" /></a>
 
 ## new game test:
 [https://github.com/hchiam/phaserGame/tree/master/newGame](https://github.com/hchiam/phaserGame/tree/master/newGame)
-[![newGame](https://github.com/hchiam/phaserGame/blob/master/Screenshot_newGame.png "new game test")](https://codepen.io/hchiam/full/gmvzdo)
+
+<a target="_blank" href="https://codepen.io/hchiam/full/gmvzdo"><img src="https://github.com/hchiam/phaserGame/blob/master/Screenshot_newGame.png" height="200" /></a>
+
 Try the newest version in your browser here:
 [https://codepen.io/hchiam/full/gmvzdo/](https://codepen.io/hchiam/full/gmvzdo/)
