@@ -18,4 +18,4 @@ Try it in your browser: [https://codepen.io/hchiam/full/gmvzdo/](https://codepen
 
 <a target="_blank" href="https://codepen.io/hchiam/full/gmvzdo"><img src="https://github.com/hchiam/phaserGame/blob/master/Screenshot_newGame.png" height="200" /></a>
 
-![Image of retrolink usb controller](https://github.com/hchiam/phaserGame/blob/master/retrolink_usb_controller.jpg)
+<img src ="https://github.com/hchiam/phaserGame/blob/master/retrolink_usb_controller.jpg" height="200" />
