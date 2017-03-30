@@ -33,6 +33,7 @@ var btn_x = Phaser.Gamepad.XBOX360_A;
 var btn_y = Phaser.Gamepad.XBOX360_B;
 var stick_left_x = Phaser.Gamepad.XBOX360_STICK_LEFT_Y;
 var stick_left_y = Phaser.Gamepad.XBOX360_STICK_RIGHT_X;
+var aButton; // just in case of misunderstanding controller vs keyboard A
 
 var immobile = false;
 var intangible = false;
@@ -119,6 +120,7 @@ function create() {
     
     // Call the 'jump' function when the spacekey is hit
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    aButton = game.input.keyboard.addKey(Phaser.Keyboard.A);
     
     // Call the 'jump' function when we tap/click on the screen
     pointer1 = game.input.addPointer(); // TODO: check that this works
@@ -130,7 +132,7 @@ function create() {
     
     text = game.add.text(0, 0, message);
     
-    instructionText = game.add.text(0, 0, "Left / Right = \u25C0 / \u25B6\nJump = Spacebar / \u261A", {fill:"maroon"});
+    instructionText = game.add.text(0, 0, "Left / Right = \u25C0 / \u25B6 / left stick\nJump = Spacebar / \u261A / A", {fill:"maroon"});
     instructionText.x = game.width/2 - instructionText.width/2;
 }
 
@@ -182,7 +184,7 @@ function update () {
             player.body.velocity.x = 250;
         }
         
-        if (jumpButton.isDown) {
+        if (jumpButton.isDown || aButton.isDown) {
             // jumping off of floor and wall/ceiling "stickiness"
             jump();
         }
