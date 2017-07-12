@@ -1,6 +1,8 @@
 # phaserGame
 Test games using the Phaser HTML5 game framework.
 
+Just one of the things I'm learning. https://github.com/hchiam/learning
+
 ## minimal example code:
 [https://github.com/hchiam/phaserGame/tree/master/minimal-example](https://github.com/hchiam/phaserGame/tree/master/minimal-example)
 
